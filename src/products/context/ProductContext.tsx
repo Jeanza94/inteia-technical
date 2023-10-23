@@ -3,11 +3,9 @@ import { Product } from "../interfaces/product";
 
 interface ProductContextProps {
   loadingProducts: boolean,
-  page: number,
+  productPage: number,
   products: Product[],
-
-  nextPage: () => void,
-  previousPage: () => void,
+  setProductPage: (page: number) => void,
   setProductsFromApi: () => Promise<void>
 }
 

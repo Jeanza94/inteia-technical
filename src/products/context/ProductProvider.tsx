@@ -6,17 +6,16 @@ import { useProductProvider } from "../hooks"
 export const ProductProvider:FC<PropsWithChildren> = ({children}) => {
 
   const {
-    page, state,
-    nextPage, previousPage, setProductsFromApi
+    state,
+    setProductPage,
+     setProductsFromApi,
   } = useProductProvider()
 
   return (
     <ProductContext.Provider
       value={{
-        page,
         ...state,
-        nextPage,
-        previousPage,
+        setProductPage,
         setProductsFromApi
       }}
     >

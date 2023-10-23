@@ -1,22 +1,22 @@
 import { useContext, useMemo } from "react"
-import { Button, Grid, IconButton, Typography } from "@mui/material"
+import { Button, Grid, Typography } from "@mui/material"
 import { ProductContext } from "../context/ProductContext"
 import { ProductCard } from "../components/ProductCard"
-import { Add, ArrowCircleLeft, ArrowCircleRight } from "@mui/icons-material"
+import { Add } from "@mui/icons-material"
+import { PaginationProducts } from "../components/PaginationProducts"
 
 export const ProductsPage = () => {
 
   const {
-    loadingProducts, page, products,
-    nextPage, previousPage
+    loadingProducts, productPage, products,
   } = useContext(ProductContext)
 
   const productsToShow = useMemo(() => {
     if (products.length === 0) return products
-    const initialIndex = (page - 1) * 20
-    const finalIndex = page * 20
+    const initialIndex = (productPage - 1) * 20
+    const finalIndex = productPage * 20
     return products.slice(initialIndex, finalIndex)
-  }, [page, products])
+  }, [productPage, products])
 
   return (
     <Grid
@@ -57,14 +57,7 @@ export const ProductsPage = () => {
         }
       </Grid>
 
-      <Grid container gap={1} justifyContent="center">
-        <IconButton onClick={previousPage} color="primary" title="Previous page">
-          <ArrowCircleLeft />
-        </IconButton>
-        <IconButton onClick={nextPage} color="primary" title="Next page">
-          <ArrowCircleRight />
-        </IconButton>
-      </Grid>
+     <PaginationProducts />
 
     </Grid>
   )

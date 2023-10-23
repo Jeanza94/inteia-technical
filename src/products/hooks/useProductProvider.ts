@@ -4,23 +4,23 @@ import { useReducer } from "react"
 import { getProductsFromApi } from "../api"
 import { productReducer } from "../context/productReducer"
 import { Product } from "../interfaces/product"
-import { usePagination } from "../../shared/hooks/usePagination"
 
 export interface ProductState {
+  loadingProducts: boolean,
+  productPage: number,
   products: Product[],
-  loadingProducts: boolean
 }
 
 const initailState: ProductState = {
+  loadingProducts: false,
+  productPage: 1,
   products: [],
-  loadingProducts: false
+  
 }
 
 export const useProductProvider = () => {
   const [state, dispatch] = useReducer(productReducer, initailState)
 
-  const {nextPage, page, previousPage} = usePagination()
-  
   const setProducts = (products: Product[]) => {
     dispatch({type: "set-products", payload: products})
   }
@@ -31,6 +31,10 @@ export const useProductProvider = () => {
 
   const setLoadingProductsToTrue = () => {
     dispatch({type: "set-loading-products", payload: true })
+  }
+
+  const setProductPage = (page: number) => {
+    dispatch({type: "set-product-page", payload: page})
   }
 
   const setProductsFromApi = async() => {
@@ -45,9 +49,7 @@ export const useProductProvider = () => {
 
   return {
     state,
-    page,
-    nextPage,
-    previousPage,
+    setProductPage,
     setProductsFromApi
   }
 }

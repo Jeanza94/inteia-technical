@@ -12,7 +12,6 @@ export const ProductCard:FC<Props> = ({product}) => {
       <CardHeader
         title={product.title}
         subheader={product.category.name}
-        cla
       />
         
       <CardMedia 
