@@ -1,10 +1,11 @@
-import { Typography } from "@mui/material"
+import { ProductProvider } from "./products/context/ProductProvider"
+import { RootLayout } from "./shared/layouts/RootLayout"
 
-function App() {
 
+export const App = () => {
   return (
-    <Typography variant="h5" component="h1">pagina</Typography>    
+    <ProductProvider>
+      <RootLayout />
+    </ProductProvider>
   )
 }
-
-export default App
