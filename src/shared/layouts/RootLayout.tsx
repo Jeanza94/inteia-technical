@@ -1,10 +1,18 @@
+import { useContext, useEffect } from 'react'
 import {Outlet} from "react-router-dom"
 import { Box, ThemeProvider } from "@mui/material"
 import { NavBar, Footer } from "../components"
 import { lightTheme } from "../../themes/lightTheme"
+import { ProductContext } from '../../products/context/ProductContext'
 
 export const RootLayout = () => {
   
+  const { setProductsFromApi } = useContext(ProductContext)
+
+  useEffect(() => {
+    setProductsFromApi()
+  }, [])
+
   return (
     <ThemeProvider theme={lightTheme}>
       <NavBar />
