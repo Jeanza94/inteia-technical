@@ -4,6 +4,7 @@ import { useReducer } from "react"
 import { getProductsFromApi } from "../api"
 import { productReducer } from "../context/productReducer"
 import { Product } from "../interfaces/product"
+import { usePagination } from "../../shared/hooks/usePagination"
 
 export interface ProductState {
   products: Product[],
@@ -18,6 +19,8 @@ const initailState: ProductState = {
 export const useProductProvider = () => {
   const [state, dispatch] = useReducer(productReducer, initailState)
 
+  const {nextPage, page, previousPage} = usePagination()
+  
   const setProducts = (products: Product[]) => {
     dispatch({type: "set-products", payload: products})
   }
@@ -42,6 +45,9 @@ export const useProductProvider = () => {
 
   return {
     state,
+    page,
+    nextPage,
+    previousPage,
     setProductsFromApi
   }
 }
