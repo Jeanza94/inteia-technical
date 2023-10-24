@@ -25,10 +25,7 @@ export const CartProvider:FC<PropsWithChildren> = ({children}) => {
     
     const isProductInCart = state.productsInCart.some(prod => prod.id === product.id)
     
-    if (isProductInCart) {
-      dispatch({type: "sum-total-in-product", payload: {count, productId: product.id}})
-      return
-    }
+    if (isProductInCart) return addProductInCartByCount(product.id, count)
 
     dispatch({type:"add-product-to-cart", payload: {
       ...product,
@@ -36,6 +33,17 @@ export const CartProvider:FC<PropsWithChildren> = ({children}) => {
     }})
   }
 
+  const deleteProductInCart = (productId: number) => {
+    dispatch({type: "delete-product-in-cart", payload: {productId}})
+  }
+
+  const addProductInCartByCount = (productId: number, count=1) => {
+    dispatch({type: "sum-total-in-product", payload: {count, productId: productId}})
+  }
+
+  const substractProductByCount = (productId: number, count=1) => {
+    dispatch({type: "substract-product-by-count", payload: {productId, count}})
+  }
 
   return (
     <CartContext.Provider
@@ -44,6 +52,9 @@ export const CartProvider:FC<PropsWithChildren> = ({children}) => {
         totalProductsInCart,
 
         addProductToCart,
+        addProductInCartByCount,
+        deleteProductInCart,
+        substractProductByCount
       }}
     >
       {children}

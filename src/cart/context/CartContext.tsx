@@ -7,8 +7,11 @@ export interface ProductInCart extends Product {
 
 interface CartContextProps {
   productsInCart: ProductInCart[],
+  totalProductsInCart: number,
   addProductToCart: (product: Product, count?: number) => void,
-  totalProductsInCart: number
+  addProductInCartByCount: (productId: number, count?: number) => void,
+  deleteProductInCart: (productId: number) => void,
+  substractProductByCount: (productId: number, count?: number) => void
 }
 
 export const CartContext = createContext<CartContextProps>({} as CartContextProps)

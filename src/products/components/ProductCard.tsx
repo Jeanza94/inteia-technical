@@ -1,9 +1,10 @@
-import { Card, CardActions, CardHeader, CardMedia, CircularProgress, IconButton, Link } from "@mui/material"
+import { Card, CardActions, CardHeader, CardMedia, CircularProgress, IconButton } from "@mui/material"
 import { Product } from "../interfaces/product"
 import { FC, useContext, useState } from 'react';
 import { Delete } from "@mui/icons-material";
 import { ProductContext } from "../context/ProductContext";
 import { getPopUpConfirmedAnswer } from "../../alerts";
+import { Link } from "react-router-dom";
 
 interface Props {
   product: Product
@@ -48,11 +49,9 @@ export const ProductCard: FC<Props> = ({ product }) => {
       <CardActions sx={{ justifyContent: "space-between" }}>
 
         <Link
-          href={`/product/${slug}-${product.id}`}
-          underline="hover"
-          sx={{ cursor: "pointer" }}
+          to={`/product/${slug}-${product.id}`}
         >
-          See product
+          Details
         </Link>
 
         {

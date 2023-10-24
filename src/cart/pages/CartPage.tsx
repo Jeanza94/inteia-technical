@@ -1,5 +1,6 @@
 import { Box } from "@mui/material"
 import { FormCart } from "../components/FormCart";
+import { TableProductsInCart } from "../components/TableProductsInCart";
 
 
 export const CartPage = () => {
@@ -10,9 +11,12 @@ export const CartPage = () => {
       flexDirection="column"
       alignItems="center"
       mt={2}
+      gap={2}
+      p={2}
     >
      
       <FormCart />
+      <TableProductsInCart />
     </Box>
   )
 }

@@ -5,7 +5,7 @@ import { ProductContext } from "../../products/context/ProductContext";
 
 interface FormData {
   id: number,
-  quantity: number
+  quantity: string
 }
 
 export const useFormCart = () => {
@@ -17,7 +17,7 @@ export const useFormCart = () => {
 
   const onSubmit: SubmitHandler<FormData> = ({id, quantity}) => {
     const product = products.find(product => id === product.id)
-    addProductToCart(product!, quantity )
+    addProductToCart(product!, +quantity )
     reset()
   }
 

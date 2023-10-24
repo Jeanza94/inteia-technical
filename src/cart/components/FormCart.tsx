@@ -55,7 +55,7 @@ export const FormCart = () => {
           ...register("quantity", {
             required: {value:true, message:"Field Required"},
             validate: (value) => {
-              if (value < 1) return "Not allowed numbers lower than one"
+              if (+value < 1) return "Not allowed numbers lower than one"
               return true
             } 
           })
