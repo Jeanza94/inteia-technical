@@ -2,14 +2,14 @@ import { useForm, useFieldArray, SubmitHandler } from "react-hook-form"
 
 interface FormData {
   category: string,
-  productName: string,
+  title: string,
   description: string,
   price: number,
   images: {url: string}[]
 }
 
 type Value =
-  | {field: "productName" | "description" | "price"}
+  | {field: "title" | "description" | "price"}
   | {field: "images", indexImage: number}
 
 export const useFromProduct = () => {

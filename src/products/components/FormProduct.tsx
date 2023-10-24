@@ -29,17 +29,17 @@ export const FormProduct = () => {
     >
 
       <TextField
-        error={isErrorInField({field: "productName"})}
+        error={isErrorInField({field: "title"})}
         variant="outlined"
         label="Product name"
         size="small"
         {
-        ...register("productName", {
+        ...register("title", {
           required: { value: true, message: "Required Field" },
           minLength: { value: 3, message: "Requires at least 3 characters" }
         })
         }
-        helperText={getErrorMessage({field: "productName"})}
+        helperText={getErrorMessage({field: "title"})}
       />
 
       <Select
