@@ -1,9 +1,10 @@
-import { Box, CircularProgress } from "@mui/material"
+import { Box } from "@mui/material"
 import { useParams } from "react-router-dom"
 import { useState, useEffect } from 'react';
 import { Product } from "../interfaces/product";
 import { getProductFromApiById } from "../api/products";
 import { ProductDetailCard } from "../components/ProductDetailCard";
+import { SkeletonProductDetail } from "../components/SkeletonProductDetail";
 
 export const ProductDetailPage = () => {
 
@@ -40,7 +41,7 @@ export const ProductDetailPage = () => {
     >
       {
         isLoadingProduct
-          ? <CircularProgress />
+          ? <SkeletonProductDetail />
           : product 
             ? <ProductDetailCard product={product}/>
             : <p>no existe el producto con el id {id}</p>

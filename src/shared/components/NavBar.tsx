@@ -22,7 +22,7 @@ export const NavBar = () => {
             color="white"
             sx={{ textDecoration: "none" }}
           >
-            School market
+            Market place
           </Typography>
         </Link>
         <Grid>
