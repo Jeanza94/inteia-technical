@@ -12,6 +12,8 @@ const initialState: CartState = {
   productsInCart: []
 }
 
+const iva = 19 //19%
+
 export const CartProvider:FC<PropsWithChildren> = ({children}) => {
   
   const [state, dispatch] = useReducer(cartReducer, initialState)
@@ -20,6 +22,15 @@ export const CartProvider:FC<PropsWithChildren> = ({children}) => {
     if (state.productsInCart.length === 0) return 0
     return state.productsInCart.reduce((sum, product) => sum + product.total , 0)
   }, [state.productsInCart])
+
+  const subTotalPrice = useMemo(() => {
+    if (state.productsInCart.length === 0) return 0
+    return state.productsInCart.reduce((sum, product) => sum + (product.total * product.price) , 0)
+  }, [state.productsInCart])
+
+  const totalPrice = useMemo(() => {
+    return (subTotalPrice * (iva/100) + subTotalPrice).toFixed(2)
+  }, [subTotalPrice])
 
   const addProductToCart = (product: Product, count = 1) => {
     
@@ -42,6 +53,9 @@ export const CartProvider:FC<PropsWithChildren> = ({children}) => {
   }
 
   const substractProductByCount = (productId: number, count=1) => {
+    const product = state.productsInCart.find(prod => prod.id === productId)
+    if (!product) return 
+    if (count >= product.total) return deleteProductInCart(productId)
     dispatch({type: "substract-product-by-count", payload: {productId, count}})
   }
 
@@ -49,12 +63,14 @@ export const CartProvider:FC<PropsWithChildren> = ({children}) => {
     <CartContext.Provider
       value={{
         ...state,
+        subTotalPrice,
+        totalPrice,
         totalProductsInCart,
 
         addProductToCart,
         addProductInCartByCount,
         deleteProductInCart,
-        substractProductByCount
+        substractProductByCount,
       }}
     >
       {children}

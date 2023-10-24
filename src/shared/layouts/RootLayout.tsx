@@ -18,8 +18,12 @@ export const RootLayout = () => {
       <NavBar />
       <Box
         component="main"
-        minHeight="calc(100vh - 64px - 64px)"
+        minHeight="calc(100vh - 64px - 80px)"
         pt={8}
+        pb={2}
+        sx={{display: "flex"}}
+        alignItems="center"
+        justifyContent="center"
       >
         <Outlet />
       </Box>

@@ -7,6 +7,8 @@ export interface ProductInCart extends Product {
 
 interface CartContextProps {
   productsInCart: ProductInCart[],
+  subTotalPrice: number,
+  totalPrice: string,
   totalProductsInCart: number,
   addProductToCart: (product: Product, count?: number) => void,
   addProductInCartByCount: (productId: number, count?: number) => void,

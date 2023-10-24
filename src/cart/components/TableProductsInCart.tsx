@@ -6,7 +6,10 @@ import { ArrowCircleDown, ArrowCircleUp, Delete } from "@mui/icons-material";
 
 export const TableProductsInCart = () => {
 
-  const { productsInCart, addProductInCartByCount,deleteProductInCart, substractProductByCount } = useContext(CartContext)
+  const {
+    productsInCart, subTotalPrice, totalPrice,
+    addProductInCartByCount, deleteProductInCart, substractProductByCount
+  } = useContext(CartContext)
 
   return (
     <TableContainer component={Paper}>
@@ -41,18 +44,14 @@ export const TableProductsInCart = () => {
                     >
                       <Delete fontSize="small" color="error" />
                     </IconButton>
-                    {
-                      product.total > 0
-                        ? (
-                          <IconButton
-                            onClick={() => substractProductByCount(product.id, 1)}
-                            title="Substract one product"
-                          >
-                            <ArrowCircleDown fontSize="small" />
-                          </IconButton>
-                        )
-                        : null
-                    }
+
+                    <IconButton
+                      onClick={() => substractProductByCount(product.id, 1)}
+                      title="Substract one product"
+                    >
+                      <ArrowCircleDown fontSize="small" />
+                    </IconButton>
+                    
                     <IconButton
                       onClick={() => addProductInCartByCount(product.id, 1)}
                       title="add one product"
@@ -64,6 +63,22 @@ export const TableProductsInCart = () => {
               )
             })
           }
+
+          <TableRow>
+            <TableCell colSpan={3} />
+            <TableCell>Subtotal</TableCell>
+            <TableCell>{subTotalPrice}</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell colSpan={3} />
+            <TableCell>Iva</TableCell>
+            <TableCell>19%</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell colSpan={3} />
+            <TableCell>Total</TableCell>
+            <TableCell>{totalPrice}</TableCell>
+          </TableRow>
         </TableBody>
       </Table>
     </TableContainer>

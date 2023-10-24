@@ -24,7 +24,7 @@ export const ButtonProductForm = () => {
         onClick={onOpenFormProduct}
         title="Open Form Product"
       >
-        Add product
+        Create product
       </Button>
 
       <Modal
