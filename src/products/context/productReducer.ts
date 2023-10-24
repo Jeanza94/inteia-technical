@@ -5,6 +5,7 @@ import { ProductState } from '../hooks/useProductProvider';
 type Action =
   | { type: "set-products", payload: Product[] }
   | { type: "add-product", payload: Product }
+  | { type: "remove-product", payload: number }
   | { type: "set-loading-products", payload: boolean }
   | { type: "set-product-page", payload: number }
   | { type: "set-categories", payload: Category[] }
@@ -24,6 +25,11 @@ export const productReducer = (state: ProductState, { payload, type }: Action): 
           ...state.products,
           payload
         ]
+      }
+    case "remove-product":
+      return {
+        ...state,
+        products: state.products.filter(product => product.id !== payload)
       }
     case "set-loading-products":
       return {

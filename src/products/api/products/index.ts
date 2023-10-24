@@ -21,10 +21,11 @@ export const postProductToApi = async (product: RequestProduct) => {
   }
 }
 
-// export const deleteProductById = async(productId:number) => {
-//   try {
-//     const {data} = await 
-//   } catch (error) {
-    
-//   }
-// }
+export const deleteProductByIdInApi = async(productId:number) => {
+  try {
+    const {data} = await escuelaJsApi.delete<true>(`/products/${productId}`)
+    return data 
+  } catch (error) {
+    console.log(error)
+  }
+}

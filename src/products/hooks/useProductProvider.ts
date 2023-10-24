@@ -5,6 +5,7 @@ import { productReducer } from "../context/productReducer"
 import { Category, Product } from "../interfaces/product"
 import { getProductsFromApi } from "../api/products"
 import { getCategories } from "../api/categories"
+import { deleteProductByIdInApi } from '../api/products/index';
 
 export interface ProductState {
   loadingProducts: boolean,
@@ -29,6 +30,12 @@ export const useProductProvider = () => {
 
   const addProduct = (product: Product) => {
     dispatch({type: "add-product", payload: product})
+  }
+
+  const removeProductById = async(productId: number) => {
+    const wasDeleted = await deleteProductByIdInApi(productId)
+    if (wasDeleted) return
+    dispatch({type:"remove-product", payload: productId})
   }
 
   const setCategories = (categories: Category[]) => {
@@ -69,6 +76,7 @@ export const useProductProvider = () => {
   return {
     state,
     addProduct,
+    removeProductById,
     setProductPage,
     setProductsAndCategoriesFromApi
   }

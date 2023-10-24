@@ -8,6 +8,7 @@ export const ProductProvider:FC<PropsWithChildren> = ({children}) => {
   const {
     state,
     addProduct,
+    removeProductById,
     setProductPage,
     setProductsAndCategoriesFromApi,
   } = useProductProvider()
@@ -17,6 +18,7 @@ export const ProductProvider:FC<PropsWithChildren> = ({children}) => {
       value={{
         ...state,
         addProduct,
+        removeProductById,
         setProductPage,
         setProductsAndCategoriesFromApi
       }}

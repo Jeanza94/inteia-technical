@@ -7,6 +7,7 @@ interface ProductContextProps {
   products: Product[],
   categories: Category[],
   addProduct: (product: Product) => void,
+  removeProductById: (productId: number) => Promise<void>,
   setProductPage: (page: number) => void,
   setProductsAndCategoriesFromApi: () => Promise<void>
 }
