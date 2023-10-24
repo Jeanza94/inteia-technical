@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Box, Button, Modal } from "@mui/material"
+import { Button, Grid, Modal } from "@mui/material"
 import { Add } from '@mui/icons-material';
 import { FormProduct } from "./FormProduct";
 
@@ -30,9 +30,14 @@ export const ButtonProductForm = () => {
         open={isOpenFormProduct}
         onClose={onCloseFormProduct}
       >
-        <Box>
-          <FormProduct />
-        </Box>
+        <Grid
+          position="absolute"
+          top="50%"
+          left="50%"
+          sx={{transform: "translate(-50%, -50%)"}}
+        >
+          <FormProduct onCloseFormProduct={onCloseFormProduct} />
+        </Grid>
       </Modal>
     </>
   )

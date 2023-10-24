@@ -7,6 +7,7 @@ export const ProductProvider:FC<PropsWithChildren> = ({children}) => {
 
   const {
     state,
+    addProduct,
     setProductPage,
     setProductsAndCategoriesFromApi,
   } = useProductProvider()
@@ -15,6 +16,7 @@ export const ProductProvider:FC<PropsWithChildren> = ({children}) => {
     <ProductContext.Provider
       value={{
         ...state,
+        addProduct,
         setProductPage,
         setProductsAndCategoriesFromApi
       }}

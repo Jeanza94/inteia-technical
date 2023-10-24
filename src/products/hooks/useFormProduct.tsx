@@ -1,10 +1,15 @@
 import { useForm, useFieldArray, SubmitHandler } from "react-hook-form"
 import { RequestProduct } from "../interfaces/api"
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { ProductContext } from "../context/ProductContext";
+import { postProductToApi } from "../api/products";
+
+interface Props {
+  onCloseFormProduct : () => void
+}
 
 interface FormData {
-  category: string,
+  categoryId: number,
   title: string,
   description: string,
   price: number,
@@ -15,9 +20,10 @@ type Value =
   | {field: "title" | "description" | "price"}
   | {field: "images", indexImage: number}
 
-export const useFromProduct = () => {
+export const useFromProduct = ({onCloseFormProduct}: Props) => {
 
-  const { categories } = useContext(ProductContext)
+  const { categories, addProduct } = useContext(ProductContext)
+  const [isSubmitting, setIsSubmitting] = useState(false)
   const {register, handleSubmit, formState: {errors}, control} = useForm<FormData>({
     defaultValues: {
       images: [{url: ""}],
@@ -38,13 +44,21 @@ export const useFromProduct = () => {
     remove(index)
   }
 
-  const onSubmit:SubmitHandler<FormData> = ({category, ...data}) => {
-    const product: RequestProduct = {
-      categoryId: 1,
+  const onSubmit:SubmitHandler<FormData> = async(data) => {
+
+    setIsSubmitting(true)
+    const newProduct: RequestProduct = {
       ...data,
       images: data.images.map(image => image.url)
     }
-    console.log({product})
+    
+    const product = await postProductToApi(newProduct)
+    
+    if (product) {
+      addProduct(product)
+    }
+    setIsSubmitting(false)
+    onCloseFormProduct()
   }
 
   const isErrorInField = (value: Value) => {
@@ -68,6 +82,7 @@ export const useFromProduct = () => {
 
   return {
     categories,
+    isSubmitting,
     images,
     appendImage,
     getErrorMessage,

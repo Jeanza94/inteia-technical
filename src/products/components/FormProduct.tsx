@@ -1,25 +1,29 @@
-import { Button, Grid, IconButton, MenuItem, Select, TextField } from "@mui/material"
+import { FC } from 'react';
+import { Box, Button, CircularProgress, Grid, IconButton, MenuItem, Select, TextField } from "@mui/material"
 import { useFromProduct } from "../hooks"
 import { AddAPhoto, HighlightOff, Save } from "@mui/icons-material"
 
-export const FormProduct = () => {
+interface Props {
+  onCloseFormProduct: () => void 
+}
+
+export const FormProduct:FC<Props> = ({onCloseFormProduct}) => {
 
   const {
-    categories, images, appendImage,
+    categories, isSubmitting, images, appendImage,
     getErrorMessage, handleSubmit, isErrorInField, onSubmit, register, removeImage
-  } = useFromProduct()
+  } = useFromProduct({onCloseFormProduct})
 
   return (
-    <Grid
+    <Box
       component="form"
-      container
       bgcolor="white"
+      width={320}
       height={500}
-      width={400}
-      position="absolute"
-      top="50%"
-      left="50%"
-      sx={{ transform: "translate(-50%, -50%)", overflowY: "auto" }}
+      sx={{
+        overflowY: "auto", 
+        display: "flex", 
+      }}
       flexDirection="column"
       padding={2}
       gap={2}
@@ -49,7 +53,7 @@ export const FormProduct = () => {
               defaultValue={categories[0].id}
               inputProps={
                 {
-                  ...register("category")
+                  ...register("categoryId")
                 }
               }
             >
@@ -114,7 +118,10 @@ export const FormProduct = () => {
               {
               ...register(`images.${index}.url`, {
                 required: { value: true, message: "Required Field" },
-                pattern: { value: /^https:\/\//, message: "Must start with https://" }
+                pattern: {
+                  value: /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/,
+                  message: "Not valir URL"
+                }
               })
               }
               helperText={getErrorMessage({ field: "images", indexImage: index })}
@@ -139,15 +146,23 @@ export const FormProduct = () => {
         <AddAPhoto color="primary" fontSize="small" />
       </IconButton>
 
-      <Button
-        variant="contained"
-        color="primary"
-        startIcon={<Save />}
-        sx={{ textTransform: "none" }}
-        type="submit"
-      >
-        Save product
-      </Button>
-    </Grid>
+      {
+        isSubmitting
+          ? <CircularProgress size={20} sx={{alignSelf: "center"}} />
+          : (
+            <Button
+              variant="contained"
+              color="primary"
+              startIcon={<Save />}
+              sx={{ textTransform: "none" }}
+              type="submit"
+              title="Create new product"
+            >
+              Save product
+            </Button>
+          )
+      }
+
+    </Box>
   )
 }

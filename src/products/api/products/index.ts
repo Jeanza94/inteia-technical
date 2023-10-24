@@ -20,3 +20,11 @@ export const postProductToApi = async (product: RequestProduct) => {
     console.log(error)
   }
 }
+
+// export const deleteProductById = async(productId:number) => {
+//   try {
+//     const {data} = await 
+//   } catch (error) {
+    
+//   }
+// }

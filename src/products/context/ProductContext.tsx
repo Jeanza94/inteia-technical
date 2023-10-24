@@ -6,6 +6,7 @@ interface ProductContextProps {
   productPage: number,
   products: Product[],
   categories: Category[],
+  addProduct: (product: Product) => void,
   setProductPage: (page: number) => void,
   setProductsAndCategoriesFromApi: () => Promise<void>
 }

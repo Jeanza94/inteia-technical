@@ -27,6 +27,10 @@ export const useProductProvider = () => {
     dispatch({type: "set-products", payload: products})
   }
 
+  const addProduct = (product: Product) => {
+    dispatch({type: "add-product", payload: product})
+  }
+
   const setCategories = (categories: Category[]) => {
     dispatch({type: "set-categories", payload: categories})
   }
@@ -64,6 +68,7 @@ export const useProductProvider = () => {
 
   return {
     state,
+    addProduct,
     setProductPage,
     setProductsAndCategoriesFromApi
   }
