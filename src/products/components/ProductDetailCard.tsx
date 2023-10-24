@@ -1,12 +1,15 @@
-import { Button, Grid, Typography } from "@mui/material";
+import { FC, useContext } from 'react';
+import { Button, Grid, Typography } from "@mui/material"
 import { Product } from "../interfaces/product"
-import { FC } from 'react';
+import { CartContext } from '../../cart/context/CartContext';
 
 interface Props {
   product: Product
 }
 
 export const ProductDetailCard: FC<Props> = ({ product }) => {
+  const { addProductToCart } = useContext(CartContext)
+  
   return (
 
     <Grid
@@ -49,7 +52,13 @@ export const ProductDetailCard: FC<Props> = ({ product }) => {
 
         <Grid container alignItems="center" justifyContent="space-between">
           <Typography component="span" variant="body1">${product.price}</Typography>
-          <Button color="secondary" variant="contained">add to the cart</Button>
+          <Button 
+            color="secondary" 
+            variant="contained"
+            onClick={() => addProductToCart(product, 1)} 
+          >
+            add to the cart
+          </Button>
         </Grid>
       </Grid>
     </Grid>
