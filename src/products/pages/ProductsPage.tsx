@@ -1,11 +1,10 @@
 
-import { Button, Grid, Typography } from "@mui/material"
-import { Add } from "@mui/icons-material"
+import { Grid, Typography } from "@mui/material"
 import { PaginationProducts } from "../components/PaginationProducts"
 import { ProductsContainer } from "../components/ProductsContainer"
+import { ButtonProductForm } from "../components/ButtonProductForm"
 
 export const ProductsPage = () => {
-
 
   return (
     <Grid
@@ -22,17 +21,8 @@ export const ProductsPage = () => {
         productos
       </Typography>
 
-      <Button
-        variant="contained"
-        color="primary"
-        startIcon={<Add />}
-        sx={{ textTransform: "none" }}
-      >
-        Add product
-      </Button>
-
+      <ButtonProductForm />
       <ProductsContainer />
-
       <PaginationProducts />
 
     </Grid>
