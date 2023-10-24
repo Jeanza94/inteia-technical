@@ -16,7 +16,9 @@ export const CartPage = () => {
       flexDirection="column"
       alignItems="center"
       gap={2}
-      p={2}
+      width="100%"
+      mx={2}
+      mt={2}
     >
      
       <FormCart />

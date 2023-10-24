@@ -13,7 +13,7 @@ export const FormCart = () => {
   return (
     <Box
       component="form"
-      width={300}
+      width={280}
       gap={2}
       onSubmit={handleSubmit(onSubmit)}
       sx={{
