@@ -1,8 +1,6 @@
 import { createBrowserRouter, RouteObject } from 'react-router-dom';
 import { App } from '../App';
-import { ProductsPage } from '../products/pages';
-
-
+import { ProductDetailPage, ProductsPage } from '../products/pages';
 
 const routes: RouteObject[] = [
   {
@@ -12,6 +10,10 @@ const routes: RouteObject[] = [
       {
         path: "",
         element: <ProductsPage />
+      },
+      {
+        path:"product/:slugId",
+        element: <ProductDetailPage />
       }
     ],
     
