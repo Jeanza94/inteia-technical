@@ -1,13 +1,12 @@
 import { Button, Grid, IconButton, MenuItem, Select, TextField } from "@mui/material"
 import { useFromProduct } from "../hooks"
 import { AddAPhoto, HighlightOff, Save } from "@mui/icons-material"
-import { CategoryName } from "../interfaces/product"
 
 export const FormProduct = () => {
 
   const {
-    getErrorMessage, images,
-    appendImage, handleSubmit, isErrorInField, onSubmit, register, removeImage
+    categories, images, appendImage,
+    getErrorMessage, handleSubmit, isErrorInField, onSubmit, register, removeImage
   } = useFromProduct()
 
   return (
@@ -29,7 +28,7 @@ export const FormProduct = () => {
     >
 
       <TextField
-        error={isErrorInField({field: "title"})}
+        error={isErrorInField({ field: "title" })}
         variant="outlined"
         label="Product name"
         size="small"
@@ -39,27 +38,33 @@ export const FormProduct = () => {
           minLength: { value: 3, message: "Requires at least 3 characters" }
         })
         }
-        helperText={getErrorMessage({field: "title"})}
+        helperText={getErrorMessage({ field: "title" })}
       />
 
-      <Select
-        size="small"
-        defaultValue={CategoryName.Clothes}
-        inputProps={
-          {
-            ...register("category")
-          }
-        }
-      >
-        <MenuItem value={CategoryName.Clothes}>{CategoryName.Clothes}</MenuItem>
-        <MenuItem value={CategoryName.Electronics}>{CategoryName.Electronics}</MenuItem>
-        <MenuItem value={CategoryName.Furniture}>{CategoryName.Furniture}</MenuItem>
-        <MenuItem value={CategoryName.Others}>{CategoryName.Others}</MenuItem>
-        <MenuItem value={CategoryName.Shoes}>{CategoryName.Shoes}</MenuItem>
-      </Select>
-      
+      {
+        categories.length > 0
+          ? (
+            <Select
+              size="small"
+              defaultValue={categories[0].id}
+              inputProps={
+                {
+                  ...register("category")
+                }
+              }
+            >
+              {
+                categories.map(category => (
+                  <MenuItem key={category.id} value={category.id}>{category.name}</MenuItem>
+                ))
+              }
+            </Select>
+          )
+          : null
+      }
+
       <TextField
-        error={isErrorInField({field:"description"})}
+        error={isErrorInField({ field: "description" })}
         variant="outlined"
         label="Description"
         multiline
@@ -71,25 +76,25 @@ export const FormProduct = () => {
           minLength: { value: 3, message: "Requires at least 3 characters" }
         })
         }
-        helperText={getErrorMessage({field: "description"})}
+        helperText={getErrorMessage({ field: "description" })}
       />
 
       <TextField
-        error={isErrorInField({field: "price"})}
+        error={isErrorInField({ field: "price" })}
         variant="outlined"
         label="Price ($)"
         type="number"
         size="small"
         {
-          ...register("price", {
-            required: { value: true, message: "Required Field" },
-            validate: (value) => {
-              if (value < 1) return "Not allowed prices lower than 1 dollar"
-              return true
-            }
-          })
+        ...register("price", {
+          required: { value: true, message: "Required Field" },
+          validate: (value) => {
+            if (value < 1) return "Not allowed prices lower than 1 dollar"
+            return true
+          }
+        })
         }
-        helperText={getErrorMessage({field: "price"})}
+        helperText={getErrorMessage({ field: "price" })}
       />
 
       {
@@ -102,17 +107,17 @@ export const FormProduct = () => {
             key={image.id}
           >
             <TextField
-              error={isErrorInField({field: "images", indexImage: index})}
+              error={isErrorInField({ field: "images", indexImage: index })}
               variant="outlined"
               label={`Image ${index + 1}`}
               size="small"
               {
-                ...register(`images.${index}.url`, {
-                  required: { value: true, message: "Required Field" },
-                  pattern: {value: /^https:\/\//, message: "Must start with https://"}
-                })
+              ...register(`images.${index}.url`, {
+                required: { value: true, message: "Required Field" },
+                pattern: { value: /^https:\/\//, message: "Must start with https://" }
+              })
               }
-              helperText={getErrorMessage({field: "images", indexImage: index})}
+              helperText={getErrorMessage({ field: "images", indexImage: index })}
             />
             <IconButton
               sx={{ position: "absolute", top: -20, right: -12 }}

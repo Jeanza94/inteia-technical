@@ -7,10 +7,10 @@ import { ProductContext } from '../../products/context/ProductContext'
 
 export const RootLayout = () => {
   
-  const { setProductsFromApi } = useContext(ProductContext)
+  const { setProductsAndCategoriesFromApi } = useContext(ProductContext)
 
   useEffect(() => {
-    setProductsFromApi()
+    setProductsAndCategoriesFromApi()
   }, [])
 
   return (

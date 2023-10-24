@@ -12,16 +12,10 @@ export interface Product {
 
 export interface Category {
     id:         number;
-    name:       CategoryName;
+    name:       string;
     image:      string;
     creationAt: string;
     updatedAt:  string;
 }
 
-export enum CategoryName {
-    Clothes = "Clothes",
-    Electronics = "Electronics",
-    Furniture = "Furniture",
-    Others = "Others",
-    Shoes = "Shoes",
-}
+

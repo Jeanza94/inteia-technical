@@ -1,14 +1,15 @@
-import { Product } from '../interfaces/product';
+import { Category, Product } from '../interfaces/product';
 import { ProductState } from '../hooks/useProductProvider';
 
 
-type Action = 
-| {type: "set-products", payload: Product[]}
-| {type: "set-loading-products", payload: boolean}
-| {type: "set-product-page", payload: number}
+type Action =
+  | { type: "set-products", payload: Product[] }
+  | { type: "set-loading-products", payload: boolean }
+  | { type: "set-product-page", payload: number }
+  | { type: "set-categories", payload: Category[] }
 
-export const productReducer = (state: ProductState, {payload, type}:Action): ProductState => {
-  
+export const productReducer = (state: ProductState, { payload, type }: Action): ProductState => {
+
   switch (type) {
     case "set-products":
       return {
@@ -25,8 +26,14 @@ export const productReducer = (state: ProductState, {payload, type}:Action): Pro
         ...state,
         productPage: payload
       }
-  
+
+    case "set-categories":
+      return {
+        ...state,
+        categories: payload
+      }
+
     default:
-      return {...state}
+      return { ...state }
   }
 }

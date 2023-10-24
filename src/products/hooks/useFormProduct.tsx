@@ -1,4 +1,7 @@
 import { useForm, useFieldArray, SubmitHandler } from "react-hook-form"
+import { RequestProduct } from "../interfaces/api"
+import { useContext } from 'react';
+import { ProductContext } from "../context/ProductContext";
 
 interface FormData {
   category: string,
@@ -14,6 +17,7 @@ type Value =
 
 export const useFromProduct = () => {
 
+  const { categories } = useContext(ProductContext)
   const {register, handleSubmit, formState: {errors}, control} = useForm<FormData>({
     defaultValues: {
       images: [{url: ""}],
@@ -34,8 +38,13 @@ export const useFromProduct = () => {
     remove(index)
   }
 
-  const onSubmit:SubmitHandler<FormData> = (data) => {
-    console.log({data})
+  const onSubmit:SubmitHandler<FormData> = ({category, ...data}) => {
+    const product: RequestProduct = {
+      categoryId: 1,
+      ...data,
+      images: data.images.map(image => image.url)
+    }
+    console.log({product})
   }
 
   const isErrorInField = (value: Value) => {
@@ -58,6 +67,7 @@ export const useFromProduct = () => {
   }
 
   return {
+    categories,
     images,
     appendImage,
     getErrorMessage,
