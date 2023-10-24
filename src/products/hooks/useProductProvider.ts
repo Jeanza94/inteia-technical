@@ -34,7 +34,7 @@ export const useProductProvider = () => {
 
   const removeProductById = async(productId: number) => {
     const wasDeleted = await deleteProductByIdInApi(productId)
-    if (wasDeleted) return
+    if (!wasDeleted) return
     dispatch({type:"remove-product", payload: productId})
   }
 

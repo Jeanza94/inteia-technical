@@ -22,6 +22,7 @@ export const ButtonProductForm = () => {
         startIcon={<Add />}
         sx={{ textTransform: "none" }}
         onClick={onOpenFormProduct}
+        title="Open Form Product"
       >
         Add product
       </Button>
