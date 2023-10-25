@@ -96,8 +96,9 @@ export const ProductDetailCard: FC<Props> = ({ product }) => {
             color="secondary"
             variant="contained"
             onClick={() => addProductToCart(product, 1)}
+            sx={{color: "#152158", textTransform:"none", fontWeight:"bold"}}
           >
-            add to the cart
+            Add to the cart
           </Button>
         </Grid>
       </Grid>

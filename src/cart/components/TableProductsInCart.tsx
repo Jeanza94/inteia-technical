@@ -38,7 +38,7 @@ export const TableProductsInCart = () => {
                   <TableCell>{product.price}</TableCell>
                   <TableCell>{product.total * product.price}</TableCell>
                   <TableCell>
-                    <Link to={`/product/${slug}-${product.id}`}>Details</Link>
+                    <Link to={`/products/${slug}-${product.id}`}>Details</Link>
                     <IconButton
                       onClick={() => deleteProductInCart(product.id)}
                       title={`Delete product - ${product.title}`}
