@@ -1,6 +1,6 @@
 import { Grid } from '@mui/material';
 import { Slider } from '../components/Slider';
-import { useContext, useMemo } from 'react';
+import { useContext, useEffect, useMemo } from 'react';
 import { ProductContext } from '../../products/context/ProductContext';
 import { SkeletonProductCard } from '../../products/components/SkeletonProductCard';
 import { ProductCard } from '../../products/components/ProductCard';
@@ -9,6 +9,10 @@ import { ProductCard } from '../../products/components/ProductCard';
 export const HomePage = () => {
   
   const {products, loadingProducts} = useContext(ProductContext)
+
+  useEffect(() => {
+    document.title = "Market - inteia"
+  }, [])
 
   const productsToShow = useMemo(() => {
     return products.slice(0, 4)
