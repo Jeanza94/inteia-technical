@@ -60,7 +60,7 @@ export const Slider: FC<Props> = ({ images }) => {
               justifyContent="center"
             >
               {
-                images.map((image, index) => (
+                images.map((_image, index) => (
                   <button 
                     className={`button-slider ${index === currentIndexImage ? "button-slider-active" : ""}`}
                     key={index}

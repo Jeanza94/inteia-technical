@@ -1,4 +1,4 @@
-import { ChangeEvent, SyntheticEvent, useContext, useMemo } from "react"
+import { ChangeEvent, useContext, useMemo } from "react"
 import { Pagination, Stack } from "@mui/material"
 import { ProductContext } from "../context/ProductContext"
 
@@ -11,7 +11,7 @@ export const PaginationProducts = () => {
     return Math.ceil(products.length / 20)
   }, [products])
 
-  const handlePagination = (event: ChangeEvent<unknown>, value:number) => {
+  const handlePagination = (_event: ChangeEvent<unknown>, value:number) => {
     setProductPage(value)
   } 
 

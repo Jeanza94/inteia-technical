@@ -18,14 +18,15 @@ export const useCartProvider = () => {
 
   useEffect(() => {
     const productsInCart = localStorage.getItem("productsInCart")
-    console.log(productsInCart)
     if (!productsInCart) return
     const products = JSON.parse(productsInCart) as ProductInCart[]
     setProductsInCart(products)
   }, [])
 
   useEffect(() => {
-    localStorage.setItem("productsInCart", JSON.stringify(state.productsInCart))
+    setTimeout(() => {
+      localStorage.setItem("productsInCart", JSON.stringify(state.productsInCart))
+    }, 100)
   }, [state.productsInCart])
 
   const totalProductsInCart = useMemo(() => {
