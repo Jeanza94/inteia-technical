@@ -20,7 +20,7 @@ export const NavBar = () => {
       >
         <NavLink
           to="/"
-          className={({ isActive }) => isActive ? "link-active" : ""}
+          className={({ isActive }) => isActive ? "link-active" : "link-hover"}
         >
           <Grid container alignItems="center" justifyContent="center">
             <Store color="secondary" fontSize="large" />
@@ -41,7 +41,7 @@ export const NavBar = () => {
         >
           <NavLink
             to="/products"
-            className={({ isActive }) => isActive ? "link-active" : ""}
+            className={({ isActive }) => isActive ? "link-active" : "link-hover"}
           >
             <Typography
               variant="h6"
@@ -54,6 +54,7 @@ export const NavBar = () => {
           </NavLink>
           <NavLink
             to="/products-cart"
+            className="link-hover"
           >
             <Badge
               badgeContent={totalProductsInCart}

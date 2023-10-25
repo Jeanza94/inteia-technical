@@ -50,6 +50,7 @@ export const ProductCard: FC<Props> = ({ product }) => {
 
         <Link
           to={`/products/${slug}-${product.id}`}
+          className="link-hover"
         >
           <Typography component="span">Details</Typography>
         </Link>

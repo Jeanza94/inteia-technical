@@ -8,7 +8,7 @@ a {
     transition: all ease-in-out 0.3s;
 }
 
-a:hover {
+.link-hover:hover {
     transform: scale(1.1);
     transition: all ease-in-out 0.3s;
 }
