@@ -5,6 +5,7 @@ import { Product } from "../interfaces/product";
 import { getProductFromApiById } from "../api/products";
 import { ProductDetailCard } from "../components/ProductDetailCard";
 import { SkeletonProductDetail } from "../components/SkeletonProductDetail";
+import { NoProductCard } from "../components/NoProductCard";
 
 export const ProductDetailPage = () => {
 
@@ -44,7 +45,7 @@ export const ProductDetailPage = () => {
           ? <SkeletonProductDetail />
           : product 
             ? <ProductDetailCard product={product}/>
-            : <p>no existe el producto con el id {id}</p>
+            : <NoProductCard />
       }
     </Box>
   )
