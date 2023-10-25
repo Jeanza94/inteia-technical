@@ -1,7 +1,7 @@
 import { Box, Chip } from "@mui/material"
 import { FormCart } from "../components/FormCart";
 import { TableProductsInCart } from "../components/TableProductsInCart";
-import { useContext } from "react";
+import { useContext, useEffect } from 'react';
 import { CartContext } from "../context/CartContext";
 import { RemoveShoppingCart } from "@mui/icons-material";
 import { ButtonProductForm } from "../../products/components/ButtonProductForm";
@@ -10,6 +10,10 @@ import { ButtonProductForm } from "../../products/components/ButtonProductForm";
 export const CartPage = () => {
 
   const {totalProductsInCart} = useContext(CartContext)
+  
+  useEffect(() => {
+    document.title = "Products in cart"
+  }, [])
 
   return (
     <Box

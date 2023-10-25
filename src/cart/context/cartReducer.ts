@@ -1,7 +1,9 @@
 import { ProductInCart } from "./CartContext";
-import { CartState } from "./CartProvider";
+import { CartState } from '../hooks/useCartProvider';
+
 
 type Action = 
+| { type: "set-products-in-cart", payload: ProductInCart[]}
 | { type:"add-product-to-cart", payload: ProductInCart }
 | { type: "sum-total-in-product", payload: {productId: number, count: number} }
 | { type: "delete-product-in-cart", payload: {productId: number} }
@@ -10,6 +12,11 @@ type Action =
 export const cartReducer = (state: CartState, { type, payload }: Action): CartState => {
 
   switch (type) {
+    case "set-products-in-cart":
+      return {
+        ...state,
+        productsInCart: payload
+      }
     case "add-product-to-cart":
       return {
         ...state,

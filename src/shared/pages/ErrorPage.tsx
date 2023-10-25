@@ -1,8 +1,13 @@
 import { Link } from "react-router-dom"
 import { Grid, Typography, useTheme } from "@mui/material"
+import { useEffect } from 'react';
 
 export const ErrorPage = () => {
   const theme = useTheme()
+
+  useEffect(() => {
+    document.title = "Page not found"
+  },[])
   return (
     <Grid
       container

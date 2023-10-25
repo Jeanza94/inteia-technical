@@ -16,6 +16,14 @@ export const ProductDetailPage = () => {
     getProduct()
   }, [])
 
+  useEffect(() => {
+    if (!product) {
+      document.title = "Product not found"
+      return
+    }
+    document.title = `Product - ${product.title}`
+  }, [product])
+
   const { slugId } = useParams()
   const id = slugId?.split("-")[1]
 
