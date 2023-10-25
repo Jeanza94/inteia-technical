@@ -4,6 +4,7 @@ import { TableProductsInCart } from "../components/TableProductsInCart";
 import { useContext } from "react";
 import { CartContext } from "../context/CartContext";
 import { RemoveShoppingCart } from "@mui/icons-material";
+import { ButtonProductForm } from "../../products/components/ButtonProductForm";
 
 
 export const CartPage = () => {
@@ -20,7 +21,7 @@ export const CartPage = () => {
       mx={2}
       mt={2}
     >
-     
+      <ButtonProductForm />
       <FormCart />
       {
         totalProductsInCart > 0

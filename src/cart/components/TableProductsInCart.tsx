@@ -41,6 +41,7 @@ export const TableProductsInCart = () => {
                     <Link to={`/product/${slug}-${product.id}`}>Details</Link>
                     <IconButton
                       onClick={() => deleteProductInCart(product.id)}
+                      title={`Delete product - ${product.title}`}
                     >
                       <Delete fontSize="small" color="error" />
                     </IconButton>

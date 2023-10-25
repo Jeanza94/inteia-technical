@@ -12,6 +12,7 @@ export const NavBar = () => {
       <Toolbar
         component="nav"
         sx={{
+          height:64,
           display: "flex",
           justifyContent: "space-between"
         }}

@@ -6,3 +6,28 @@ body {
 a {
     text-decoration: none;
 }
+
+.image-banner {
+    object-fit: cover;
+    filter: grayscale(100%);
+}
+
+.button-slider {
+    height: 20px;
+    width: 20px;
+    border-radius: 100%;
+    background-color: #E1F217;
+    border: none;
+    cursor: pointer;
+    transition: all ease-in-out 0.3s;
+}
+
+.button-slider-active {
+    background-color:#152158 ;
+}
+
+.button-slider:hover {
+    background-color: #152158;
+    transition: all ease-in-out 0.3s;
+}
+
