@@ -22,6 +22,7 @@ export const ProductsContainer = () => {
       container
       gap={1}
       justifyContent="center"
+      mt={2}
     >
       {
         loadingProducts

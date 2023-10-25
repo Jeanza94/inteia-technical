@@ -20,7 +20,7 @@ export const ProductDetailPage = () => {
 
   const getProduct = async() => {
     if (!id || isNaN(+id)) {
-      setIsLoadingProduct(true)
+      setIsLoadingProduct(false)
       return
     }
     
