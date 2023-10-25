@@ -21,8 +21,8 @@ export const CartPage = () => {
       mx={2}
       mt={2}
     >
-      <ButtonProductForm />
       <FormCart />
+      <ButtonProductForm />
       {
         totalProductsInCart > 0
           ? <TableProductsInCart />

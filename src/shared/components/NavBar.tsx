@@ -1,8 +1,9 @@
-import { ShoppingCart } from "@mui/icons-material"
+import { ShoppingCart, Store } from "@mui/icons-material"
 import { AppBar, Badge, Grid, IconButton, Toolbar, Typography } from "@mui/material"
-import { Link } from "react-router-dom"
+import { NavLink } from "react-router-dom"
 import { useContext } from 'react';
 import { CartContext } from "../../cart/context/CartContext";
+
 
 
 export const NavBar = () => {
@@ -12,32 +13,58 @@ export const NavBar = () => {
       <Toolbar
         component="nav"
         sx={{
-          height:64,
+          height: 64,
           display: "flex",
           justifyContent: "space-between"
         }}
       >
-        <Link to="/">
-          <Typography
-            variant="h5"
-            color="white"
-            sx={{ textDecoration: "none" }}
+        <NavLink
+          to="/"
+          className={({ isActive }) => isActive ? "link-active" : ""}
+        >
+          <Grid container alignItems="center" justifyContent="center">
+            <Store color="secondary" fontSize="large" />
+            <Typography
+              component="span"
+              variant="h5"
+              color="white"
+            >
+              Market
+            </Typography>
+          </Grid>
+        </NavLink>
+        <Grid
+          container
+          width={150}
+          justifyContent="space-between"
+          alignItems="center"
+        >
+          <NavLink
+            to="/products"
+            className={({ isActive }) => isActive ? "link-active" : ""}
           >
-            Market place
-          </Typography>
-        </Link>
-        <Grid>
-          <Link to="/product/cart">
-            <Badge 
+            <Typography
+              variant="h6"
+              component="span"
+              color="white"
+              sx={{ textDecoration: "none" }}
+            >
+              Products
+            </Typography>
+          </NavLink>
+          <NavLink
+            to="/products-cart"
+          >
+            <Badge
               badgeContent={totalProductsInCart}
               color="error"
               max={99}
             >
-              <IconButton title="see the products in your cart">
+              <IconButton title="see the products in your cart" sx={{ padding: 0 }}>
                 <ShoppingCart color="secondary" fontSize="small" />
               </IconButton>
             </Badge>
-          </Link>
+          </NavLink>
         </Grid>
       </Toolbar>
     </AppBar>

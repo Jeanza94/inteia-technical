@@ -2,6 +2,7 @@ import { createBrowserRouter, RouteObject } from 'react-router-dom';
 import { App } from '../App';
 import { ProductDetailPage, ProductsPage } from '../products/pages';
 import { CartPage } from '../cart/pages';
+import { HomePage } from '../shared/pages';
 
 const routes: RouteObject[] = [
   {
@@ -10,14 +11,18 @@ const routes: RouteObject[] = [
     children: [
       {
         path: "",
+        element: <HomePage />
+      },
+      {
+        path: "products",
         element: <ProductsPage />
       },
       {
-        path:"product/:slugId",
+        path:"products/:slugId",
         element: <ProductDetailPage />
       },
       {
-        path:"product/cart",
+        path:"products-cart",
         element: <CartPage />
       },
       

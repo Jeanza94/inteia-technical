@@ -5,7 +5,7 @@ import { ProductContext } from "../context/ProductContext"
 
 export const PaginationProducts = () => {
   
-  const { productPage, products, setProductPage} = useContext(ProductContext)
+  const { products, setProductPage} = useContext(ProductContext)
   
   const totalPages = useMemo(() => {
     return Math.ceil(products.length / 20)
@@ -23,7 +23,6 @@ export const PaginationProducts = () => {
         showFirstButton 
         showLastButton
         onChange={handlePagination}
-        defaultPage={productPage}
       />
     </Stack>
   )

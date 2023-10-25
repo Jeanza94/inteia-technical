@@ -1,4 +1,4 @@
-import { Card, CardActions, CardHeader, CardMedia, CircularProgress, IconButton } from "@mui/material"
+import { Card, CardActions, CardHeader, CardMedia, CircularProgress, IconButton, Typography } from "@mui/material"
 import { Product } from "../interfaces/product"
 import { FC, useContext, useState } from 'react';
 import { Delete } from "@mui/icons-material";
@@ -49,9 +49,9 @@ export const ProductCard: FC<Props> = ({ product }) => {
       <CardActions sx={{ justifyContent: "space-between" }}>
 
         <Link
-          to={`/product/${slug}-${product.id}`}
+          to={`/products/${slug}-${product.id}`}
         >
-          Details
+          <Typography component="span">Details</Typography>
         </Link>
 
         {

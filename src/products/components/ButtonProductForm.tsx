@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Button, Grid, Modal } from "@mui/material"
-import { Add } from '@mui/icons-material';
 import { FormProduct } from "./FormProduct";
 
 export const ButtonProductForm = () => {
@@ -19,7 +18,6 @@ export const ButtonProductForm = () => {
       <Button
         variant="contained"
         color="primary"
-        startIcon={<Add />}
         sx={{ textTransform: "none" }}
         onClick={onOpenFormProduct}
         title="Open Form Product"

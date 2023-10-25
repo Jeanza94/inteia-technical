@@ -5,7 +5,21 @@ body {
 
 a {
     text-decoration: none;
+    transition: all ease-in-out 0.3s;
 }
+
+a:hover {
+    transform: scale(1.1);
+    transition: all ease-in-out 0.3s;
+}
+
+.link-active {
+    color: #152158;
+    text-decoration: underline white;
+    text-underline-offset: 4px;
+}
+
+
 
 .image-banner {
     object-fit: cover;
